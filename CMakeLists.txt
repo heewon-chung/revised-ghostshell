@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project (RevisedGhostshell)
 
 set (CMAKE_CXX_STANDARD 11)
-set (SOURCE_FILES src/ghostshell.cpp src/matching.cpp src/utilities.cpp src/mac.cpp src/encoding.cpp)
+set (SOURCE_FILES src/ghostshell.cpp src/utilities.cpp src/mac.cpp src/matching.cpp)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # Configuration Profile
