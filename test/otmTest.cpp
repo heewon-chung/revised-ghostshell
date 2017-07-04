@@ -4,7 +4,7 @@
 #include "EncryptedArray.h"
 #include "Ctxt.h"
 
-#include "mac.h"
+#include "otm.h"
 
 using namespace std;
 using namespace NTL;
