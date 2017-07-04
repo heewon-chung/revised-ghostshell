@@ -62,7 +62,7 @@ int main(void){
     hammingDistance(ctxtHD, encIris1, encIris2);
 
     ea.decrypt(ctxtHD, secretKey, decHD);
-    cout << decHD[0] << endl;
+    cout << "Hamming Distance (ciphertext)" << decHD[0] << endl;
 
     return 0;
 }

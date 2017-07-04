@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project (RevisedGhostshell)
 
 set (CMAKE_CXX_STANDARD 11)
-set (SOURCE_FILES src/ghostshell.cpp src/utilities.cpp src/mac.cpp src/matching.cpp)
+set (SOURCE_FILES src/match.cpp src/ghostshell.cpp src/utilities.cpp src/otm.cpp)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # Configuration Profile
@@ -32,7 +32,7 @@ add_executable(test_differentPrime test/diffPrimeTest.cpp)
 target_link_libraries(test_differentPrime RevisedGhostshell -pthread)
 add_executable(test_matching test/matchingTest.cpp)
 target_link_libraries(test_matching RevisedGhostshell -pthread)
-add_executable(test_mac test/macTest.cpp)
-target_link_libraries(test_mac RevisedGhostshell -pthread)
+add_executable(test_otm test/otmTest.cpp)
+target_link_libraries(test_otm RevisedGhostshell -pthread)
 add_executable(test_ghostshell test/ghostshellTest.cpp)
 target_link_libraries(test_ghostshell RevisedGhostshell -pthread)
