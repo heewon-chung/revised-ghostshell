@@ -46,7 +46,7 @@ long printAndComputeHD(const vector<vector<long>>& vec1, const vector<vector<lon
         }
     }
 
-    cout << "\nHamming Distance = " << hammingDistance << endl;
+    cout << "\nHamming Distance (plaintext) = " << hammingDistance << endl;
 
     return hammingDistance;
 }
