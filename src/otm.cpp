@@ -1,34 +1,31 @@
 #include "otm.h"
 
-void generateTag(Ctxt& tagCtxt, ZZX& maskAddPoly, ZZX& maskMulPoly, const Ctxt& hdCtxt, const EncryptedArray& ea){
-    NewPlaintextArray maskAdd(ea);
-    NewPlaintextArray maskMul(ea);
+void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
+    ZZX     maskAddPoly, maskMulPoly;
 
-    random(ea, maskAdd);
-    random(ea, maskMul);
+    RandomBits(maskAdd, RANDOMBIT);
+    RandomBits(maskMul, RANDOMBIT);
 
-    ea.encode(maskAddPoly, maskAdd);
-    ea.encode(maskMulPoly, maskMul);
+    integerToZZX(maskAddPoly, maskAdd);
+    integerToZZX(maskMulPoly, maskMul);
 
     tagCtxt = hdCtxt;
     tagCtxt.multByConstant(maskMulPoly);
     tagCtxt.addConstant(maskAddPoly);
 }
 
-void recoverMsg(){
-
-}
-
-void generateAuthGroup(vector<ZZ>& authGroup, const long& generator, const long& groupOrder, const long& threshold, const ZZX& maskRnd){
+void generateAuthGroup(vector<ZZ>& authGroup, long& generator,const ZZX& maskRnd){
     authGroup.clear();
-    authGroup.resize(threshold);
+    authGroup.resize(THRESHOLD);
+
+    RandomBits(generator, GENERATORBIT);
+
     ZZ rnd = ConstTerm(maskRnd);
     power(rnd, rnd, 2);
 
     #pragma omp parallel for
-    for(unsigned long i = 0; i < threshold; i++){
-        ZZ tmp;
-        AddMod(tmp, rnd, i, groupOrder);
-        power(authGroup[i], generator, tmp);
+    for(unsigned long i = 0; i < THRESHOLD; i++){
+        long exponent = (rnd + i) % DLGROUPORDER;
+        power(authGroup[i], generator, exponent);
     }
 }

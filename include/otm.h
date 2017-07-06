@@ -1,17 +1,19 @@
-#ifndef MAC_H
-#define MAC_H
+#ifndef OTM_H
+#define OTM_H
 
 #include <cstdlib>
 #include <cassert>
 #include <vector>
 
-#include "EncryptedArray.h"
+#include "constant.h"
 #include "Ctxt.h"
+#include "generalTools.h"
 
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
-void generateTag(Ctxt&, ZZX&, ZZX&, const Ctxt&, const EncryptedArray&);
+void generateTag(Ctxt&, ZZX&, ZZX&, const Ctxt&);
 void recoverMsg();
+void generateAuthGroup(vector<ZZ>&, long&, const ZZX&);
 
 #endif
