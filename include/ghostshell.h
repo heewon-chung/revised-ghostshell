@@ -14,8 +14,8 @@
 #include "match.h"
 #include "otm.h"
 
-// void setParameter();
 void enrollment(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const EncryptedArray&, const FHESecKey&);
-void authentication();
+void authentication(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const EncryptedArray&, const FHESecKey&);
+void verification(Ctxt& tagCtxt, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
 
 #endif
