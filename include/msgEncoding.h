@@ -5,10 +5,10 @@
 #include <cassert>
 #include <vector>
 
+#include "EncryptedArray.h"
 #include "generalTools.h"
 #include "NTL/ZZ.h"
-#include "NTL/ZZX.h"
 
-void msgEncode(vector<ZZX>&, const vector<long>&);
+void msgEncode(vector<NewPlaintextArray>&, const vector<long>&, const EncryptedArray& ea);
 
 #endif
