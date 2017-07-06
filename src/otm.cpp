@@ -14,7 +14,7 @@ void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
     tagCtxt.addConstant(maskAddPoly);
 }
 
-void generateAuthGroup(vector<ZZ>& authGroup, long& generator,const ZZX& maskRnd){
+void generateAuthGroup(vector<ZZ>& authGroup, long& generator, const ZZX& maskRnd){
     authGroup.clear();
     authGroup.resize(THRESHOLD);
 

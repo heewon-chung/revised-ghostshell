@@ -12,7 +12,7 @@
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
-void generateTag(Ctxt&, ZZX&, ZZX&, const Ctxt&);
+void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
 void recoverMsg();
 void generateAuthGroup(vector<ZZ>&, long&, const ZZX&);
 
