@@ -9,6 +9,7 @@
 #include "generalTools.h"
 #include "NTL/ZZ.h"
 
-void msgEncode(vector<NewPlaintextArray>&, const vector<long>&, const EncryptedArray& ea);
+void enrollMsgEncode(vector<NewPlaintextArray>&, const vector<long>&, const EncryptedArray& ea);
+void authMsgEncode(vector<NewPlaintextArray>&, const vector<long>&, const EncryptedArray& ea);
 
 #endif
