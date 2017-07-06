@@ -9,6 +9,6 @@
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
-void msgEncode(vector<ZZX>&, const vector<long>&, const long);
+void msgEncode(vector<ZZX>&, const vector<long>&);
 
 #endif

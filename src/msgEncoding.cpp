@@ -1,6 +1,6 @@
 #include "msgEncoding.h"
 
-void msgEncode(vector<ZZX>& encodedPoly, const vector<long>& iris, const long prime){
+void msgEncode(vector<ZZX>& encodedPoly, const vector<long>& iris){
     assert(iris.size() == NUMBITS);
     encodedPoly.clear();
     encodedPoly.resize(NUMBITS + 1);
@@ -10,7 +10,7 @@ void msgEncode(vector<ZZX>& encodedPoly, const vector<long>& iris, const long pr
             integerToZZX(encodedPoly[i], MSGRND1);
         }
         else{
-            integerToZZX(encodedPoly[i], MSGRND2);
+            integerToZZX(encodedPoly[i], MSGRND1 + 1);
         }
     }
     ZZ rnd;
