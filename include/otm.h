@@ -8,12 +8,13 @@
 #include "constant.h"
 #include "Ctxt.h"
 #include "generalTools.h"
+#include "EncryptedArray.h"
 
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
 void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
 void recoverMsg();
-void generateAuthGroup(vector<ZZ>&, long&, const ZZX&);
+void generateAuthGroup(long&, vector<ZZ>&);
 
 #endif

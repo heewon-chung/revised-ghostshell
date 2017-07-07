@@ -18,9 +18,9 @@ void enrollMsgEncode(vector<NewPlaintextArray>& encodedIris, const vector<long>&
         encode(ea, encodedIris[i], encodedPoly[i]);
     }
 
-    ZZ rnd;
-    RandomBits(rnd, RANDOMBIT);
-    integerToZZX(encodedPoly[NUMBITS], rnd);
+    // ZZ rnd;
+    // RandomBits(rnd, RANDOMBIT);
+    integerToZZX(encodedPoly[NUMBITS], MASKRND);
     encode(ea, encodedIris[NUMBITS], encodedPoly[NUMBITS]);
 }
 

@@ -14,13 +14,13 @@ void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
     tagCtxt.addConstant(maskAddPoly);
 }
 
-void generateAuthGroup(vector<ZZ>& authGroup, long& generator, const ZZX& maskRnd){
+void generateAuthGroup(long& generator, vector<ZZ>& authGroup){
     authGroup.clear();
     authGroup.resize(THRESHOLD);
 
     RandomBits(generator, GENERATORBIT);
-
-    ZZ rnd = ConstTerm(maskRnd);
+    
+    ZZ rnd = MASKRND;
     power(rnd, rnd, 2);
 
     #pragma omp parallel for

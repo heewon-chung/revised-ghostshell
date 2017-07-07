@@ -18,6 +18,7 @@ const unsigned long RANDOMBIT       = 40;
 const unsigned long GENERATORBIT    = 30;
 const unsigned long DLGROUPORDER    = 100;
 
+const ZZ            MASKRND         = RandomBits_ZZ(RANDOMBIT);
 const ZZ            MSGRND1         = RandomBits_ZZ(RANDOMBIT);
 const ZZ            MSGRND2         = RandomBits_ZZ(RANDOMBIT);
 
