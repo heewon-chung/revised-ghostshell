@@ -13,9 +13,12 @@
 #include "msgEncoding.h"
 #include "match.h"
 #include "otm.h"
+#include "hashing.h"
 
 void enrollment(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const EncryptedArray&, const FHESecKey&);
 void authentication(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const EncryptedArray&, const FHESecKey&);
-void verification(Ctxt& tagCtxt, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
+void computeHDandTag(Ctxt& tagCtxt, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
+void decryptAndGenerateAuthGroup(ZZ&, long&, vector<ZZ>&, const Ctxt&, const EncryptedArray&, const FHESecKey&);
+bool verification();
 
 #endif
