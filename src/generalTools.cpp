@@ -1,7 +1,7 @@
 #include "generalTools.h"
 
 
-void integerToZZX(ZZX& encodedPoly, const ZZ& msg){
+void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
     ZZ      tmpMsg = msg;
     long    amt = 0;
 
@@ -14,16 +14,20 @@ void integerToZZX(ZZX& encodedPoly, const ZZ& msg){
     }
 }
 
+void ZZXtoZZ(ZZ& msg, const ZZX& poly){
+
+}
+
 void generateVectorInstance(vector<ZZX>& vecPoly){
     vecPoly.clear();
     vecPoly.resize(NUMBITS);
     
     for(unsigned long i = 0; i < NUMBITS; i++){
         if(rand() % 2){
-            integerToZZX(vecPoly[i], MSGRND1);
+            ZZtoZZX(vecPoly[i], MSGRND1);
         }
         else{
-            integerToZZX(vecPoly[i], MSGRND1 + 1);
+            ZZtoZZX(vecPoly[i], MSGRND1 + 1);
         }
     }
 }

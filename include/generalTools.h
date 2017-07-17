@@ -12,7 +12,8 @@
 using namespace std;
 using namespace NTL;
 
-void integerToZZX(ZZX&, const ZZ&);
+void ZZtoZZX(ZZX&, const ZZ&);
+void ZZXtoZZ(ZZ&, const ZZX&);
 void generateVectorInstance(vector<ZZX>&);
 
 #endif

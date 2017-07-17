@@ -10,17 +10,15 @@ void enrollMsgEncode(vector<NewPlaintextArray>& encodedIris, const vector<long>&
     #pragma omp parallel for
     for(unsigned long i = 0; i < NUMBITS; i++){
         if(iris[i]){
-            integerToZZX(encodedPoly[i], MSGRND1);
+            ZZtoZZX(encodedPoly[i], MSGRND1);
         }
         else{
-            integerToZZX(encodedPoly[i], MSGRND1 + 1);
+            ZZtoZZX(encodedPoly[i], MSGRND1 + 1);
         }
         encode(ea, encodedIris[i], encodedPoly[i]);
     }
 
-    // ZZ rnd;
-    // RandomBits(rnd, RANDOMBIT);
-    integerToZZX(encodedPoly[NUMBITS], MASKRND);
+    ZZtoZZX(encodedPoly[NUMBITS], MASKRND);
     encode(ea, encodedIris[NUMBITS], encodedPoly[NUMBITS]);
 }
 
@@ -34,10 +32,10 @@ void authMsgEncode(vector<NewPlaintextArray>& encodedIris, const vector<long>& i
     #pragma omp parallel for
     for(unsigned long i = 0; i < NUMBITS; i++){
         if(iris[i]){
-            integerToZZX(encodedPoly[i], MSGRND1);
+            ZZtoZZX(encodedPoly[i], MSGRND1);
         }
         else{
-            integerToZZX(encodedPoly[i], MSGRND1 + 1);
+            ZZtoZZX(encodedPoly[i], MSGRND1 + 1);
         }
         encode(ea, encodedIris[i], encodedPoly[i]);
     }

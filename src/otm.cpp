@@ -6,8 +6,8 @@ void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
     RandomBits(maskAdd, RANDOMBIT);
     RandomBits(maskMul, RANDOMBIT);
 
-    integerToZZX(maskAddPoly, maskAdd);
-    integerToZZX(maskMulPoly, maskMul);
+    ZZtoZZX(maskAddPoly, maskAdd);
+    ZZtoZZX(maskMulPoly, maskMul);
 
     tagCtxt = hdCtxt;
     tagCtxt.multByConstant(maskMulPoly);
