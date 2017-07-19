@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project (RevisedGhostshell)
 
 set (CMAKE_CXX_STANDARD 11)
-set (SOURCE_FILES src/match.cpp src/ghostshell.cpp src/generalTools.cpp src/otm.cpp src/msgEncoding.cpp)
+set (SOURCE_FILES src/match.cpp src/ghostshell.cpp src/generalTools.cpp src/otm.cpp src/msgEncoding.cpp src/hashing.cpp)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # Configuration Profile
@@ -21,12 +21,11 @@ set (HELIB_SOURCE_DIRECTORY "/Users/heewon/Documents/_SourceCode/Library/HElib-m
 include_directories(${HELIB_SOURCE_DIRECTORY})
 include_directories(include)
 include_directories(lib)
-include_directories(lib/ntl-10.3.0/include)
 
 add_subdirectory(lib)
 
 add_library(RevisedGhostshell ${SOURCE_FILES})
-target_link_libraries(RevisedGhostshell HElib NTL -lgmp -pthread -lgf2x -lm -O2)
+target_link_libraries(RevisedGhostshell HElib NTL GMP GF2X -pthread -lm -O2)
 
 add_executable(test_matching test/matchingTest.cpp)
 target_link_libraries(test_matching RevisedGhostshell -pthread)
