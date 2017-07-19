@@ -15,7 +15,14 @@ void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
 }
 
 void ZZXtoZZ(ZZ& msg, const ZZX& poly){
+    unsigned long   degree = deg(poly);
+    ZZ              multiplier = PRIMEFIELD;
+    msg = ConstTerm(poly);
 
+    for(unsigned long i = 1; i < degree; i++){
+        msg += multiplier * coeff(poly, i);
+        multiplier *= PRIMEFIELD;
+    }
 }
 
 void generateVectorInstance(vector<ZZX>& vecPoly){
