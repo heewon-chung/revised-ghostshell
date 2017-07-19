@@ -63,8 +63,9 @@ bool verification(const long& generator, const vector<ZZ>& authGroup, const ZZ& 
     int     sizeGroup = authGroup.size();
     bool    isInGroup = false;
     ZZ      recoverMsgHash = tagDL;
+
     // recover g^msg
-    
+    recoverMsg();
     // check in authentication group
     #pragma omp parallel for
     for(unsigned long i = 0; i < THRESHOLD; i++){

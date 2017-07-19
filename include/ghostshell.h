@@ -19,6 +19,6 @@ void enrollment(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const Encry
 void authentication(vector<Ctxt>&, ZZ&, const vector<long>&, const long, const EncryptedArray&, const FHESecKey&);
 void computeHDandTag(Ctxt& tagCtxt, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
 void decryptAndGenerateAuthGroup(ZZ&, long&, vector<ZZ>&, const Ctxt&, const EncryptedArray&, const FHESecKey&);
-bool verification();
+bool verification(const long&, const vector<ZZ>&, const ZZ&);
 
 #endif
