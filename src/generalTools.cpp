@@ -26,7 +26,7 @@ void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
     long    amt = 0;
 
     while(tmpMsg > 0){
-        long rem = tmpMsg % PRIMEFIELD;
+        long rem = tmpMsg % 2;
         SetCoeff(encodedPoly, amt, rem);
         amt++;
         tmpMsg -= rem;
