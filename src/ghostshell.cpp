@@ -3,30 +3,25 @@
 using namespace std;
 using namespace NTL;
 
-void enrollment(vector<Ctxt>& encIris, ZZ& rnd, const vector<long>& iris, const EncryptedArray& ea, const FHESecKey& secretKey){
+void enrollment(vector<Ctxt>& encIris, const vector<ZZX>& iris, const FHESecKey& secretKey){
     assert(iris.size() == NUMBITS);
-    encIris.clear();
-    encIris.resize(NUMBITS + 1, secretKey);
-    
-    vector<NewPlaintextArray> encodedIris(NUMBITS + 1, ea);
-
-    enrollMsgEncode(encodedIris, iris, ea);
-    
-    for(unsigned long i = 0; i < encodedIris.size(); i++){
-        ea.encrypt(encIris[i], secretKey, encodedIris[i]);
+    vector<ZZX> encodedIris;
+    enrollIrisEncode(encodedIris, iris);
+    assert(encodedIris.size() == NUMBITS + 1);
+    #pragma omp parallel for
+    for(unsigned long i = 0; i < NUMBITS + 1; i++){
+        secretKey.Encrypt(encIris[i], encodedIris[i]);
     }
 }
 
-void authentication(vector<Ctxt>& encIris, const vector<long>& iris, const EncryptedArray& ea, const FHESecKey& secretKey){
+void authentication(vector<Ctxt>& encIris, const vector<ZZX>& iris, const FHESecKey& secretKey){
     assert(iris.size() == NUMBITS);
-    encIris.clear();
-    encIris.resize(NUMBITS + 1, secretKey);
-    vector<NewPlaintextArray> encodedIris(NUMBITS, ea);
-
-    authMsgEncode(encodedIris, iris, ea);
-
-    for(unsigned long i = 0; i < encodedIris.size(); i++){
-        ea.encrypt(encIris[i], secretKey, encodedIris[i]);
+    vector<ZZX> encodedIris;
+    authIrisEncode(encodedIris, iris);
+    assert(encodedIris.size() == NUMBITS + 1);
+    #pragma omp parallel for
+    for(unsigned long i = 0; i < NUMBITS + 1; i++){
+        secretKey.Encrypt(encIris[i], encodedIris[i]);
     }
 }
 
@@ -35,45 +30,45 @@ void computeHDandOTM(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const vector<Ctxt>
     generateTag(tagCtxt, maskAdd, maskMul, tagCtxt);
 }
 
-void decryptAndGenerateAuthGroup(ZZ& tagDL, long& generator, vector<ZZ>& authGroup, const Ctxt& tagCtxt, const EncryptedArray& ea, const FHESecKey& secretKey){
+// void decryptAndGenerateAuthGroup(ZZ& tagDL, long& generator, vector<ZZ>& authGroup, const Ctxt& tagCtxt, const EncryptedArray& ea, const FHESecKey& secretKey){
     
-    ZZX             tagPoly;
-    ZZ              tag,
-                    tmpHash,
-                    msgHash;
-    vector<long>    tagPtxt;
-    long            tagPower;
+//     ZZX             tagPoly;
+//     ZZ              tag,
+//                     tmpHash,
+//                     msgHash;
+//     vector<long>    tagPtxt;
+//     long            tagPower;
 
-    ea.decrypt(tagCtxt, secretKey, tagPtxt);
-    ea.encode(tagPoly, tagPtxt);
-    ZZXtoZZ(tag, tagPoly);
-    tagPower = tag % DLGROUPORDER;
-    generateAuthGroup(generator, authGroup);
-    power(tagDL, generator, tagPower);
+//     ea.decrypt(tagCtxt, secretKey, tagPtxt);
+//     ea.encode(tagPoly, tagPtxt);
+//     vecToZZ(tag, tagPoly);
+//     tagPower = tag % DLGROUPORDER;
+//     generateAuthGroup(generator, authGroup);
+//     power(tagDL, generator, tagPower);
 
-    #pragma omp parallel for
-    for(unsigned long i = 0; i < THRESHOLD; i++){
-        power(msgHash, generator, i);
-        hashing(tmpHash, msgHash);
-        authGroup.push_back(tmpHash);
-    }
-}
+//     #pragma omp parallel for
+//     for(unsigned long i = 0; i < THRESHOLD; i++){
+//         power(msgHash, generator, i);
+//         hashing(tmpHash, msgHash);
+//         authGroup.push_back(tmpHash);
+//     }
+// }
 
-bool verification(const long& generator, const vector<ZZ>& authGroup, const ZZ& tagDL){
-    int     sizeGroup = authGroup.size();
-    bool    isInGroup = false;
-    ZZ      recoverMsgHash = tagDL;
+// bool verification(const long& generator, const vector<ZZ>& authGroup, const ZZ& tagDL){
+//     int     sizeGroup = authGroup.size();
+//     bool    isInGroup = false;
+//     ZZ      recoverMsgHash = tagDL;
 
-    // recover g^msg
-    recoverMsg();
-    // check in authentication group
-    #pragma omp parallel for
-    for(unsigned long i = 0; i < THRESHOLD; i++){
-        if(recoverMsgHash == authGroup[i]){
-            isInGroup = true;
-            break;
-        }
-    }
+//     // recover g^msg
+//     recoverMsg();
+//     // check in authentication group
+//     #pragma omp parallel for
+//     for(unsigned long i = 0; i < THRESHOLD; i++){
+//         if(recoverMsgHash == authGroup[i]){
+//             isInGroup = true;
+//             break;
+//         }
+//     }
 
-    return isInGroup;
-}
+//     return isInGroup;
+// }
