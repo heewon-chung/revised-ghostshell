@@ -6,15 +6,16 @@
 #include <vector>
 
 #include "constant.h"
-#include "Ctxt.h"
-#include "generalTools.h"
 #include "EncryptedArray.h"
+#include "Ctxt.h"
+#include "FHE.h"
+#include "generalTools.h"
 
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
-void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
-void recoverMsg();
+void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&, const EncryptedArray&);
+void recoverMsg(ZZX&, const ZZ&, const ZZ&, const ZZX&);
 void generateAuthGroup(long&, vector<ZZ>&);
 
 #endif

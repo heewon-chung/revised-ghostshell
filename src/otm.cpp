@@ -1,8 +1,9 @@
 #include "otm.h"
 
-void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
-    ZZX     maskAddPoly, maskMulPoly;
-
+void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt, const EncryptedArray& ea){
+    int numSlots = ea.size();
+    ZZX maskAddPoly, maskMulPoly;
+    
     RandomBits(maskAdd, RANDOMBIT);
     RandomBits(maskMul, RANDOMBIT);
 
@@ -12,6 +13,17 @@ void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
     tagCtxt = hdCtxt;
     tagCtxt.multByConstant(maskMulPoly);
     tagCtxt.addConstant(maskAddPoly);
+}
+
+void recoverMsg(ZZX& recPoly, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& tagPoly){
+    ZZX maskAddPoly, maskMulPoly;
+
+    ZZtoZZX(maskAddPoly, maskAdd);
+    ZZtoZZX(maskMulPoly, maskMul);
+
+    recPoly = tagPoly;
+    recPoly -= maskAddPoly;
+    div(recPoly, recPoly, maskMulPoly);
 }
 
 void generateAuthGroup(long& generator, vector<ZZ>& authGroup){
