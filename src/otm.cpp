@@ -1,7 +1,6 @@
 #include "otm.h"
 
-void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt, const EncryptedArray& ea){
-    int numSlots = ea.size();
+void generateTag(Ctxt& tagCtxt, ZZ& maskAdd, ZZ& maskMul, const Ctxt& hdCtxt){
     ZZX maskAddPoly, maskMulPoly;
     
     RandomBits(maskAdd, RANDOMBIT);

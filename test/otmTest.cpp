@@ -72,7 +72,7 @@ int main(void){
     cout << "Generating One-Time MAC for Ctxt..." << endl;
     start = TIC;
     
-    generateTag(ctxtTag, maskAdd, maskMul, ctxtTag, ea);
+    generateTag(ctxtTag, maskAdd, maskMul, ctxtTag);
 
     end = TOC;
 

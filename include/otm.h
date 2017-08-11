@@ -14,7 +14,7 @@
 #include "NTL/ZZ.h"
 #include "NTL/ZZX.h"
 
-void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&, const EncryptedArray&);
+void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
 void recoverMsg(ZZX&, const ZZ&, const ZZ&, const ZZX&);
 void generateAuthGroup(long&, vector<ZZ>&);
 
