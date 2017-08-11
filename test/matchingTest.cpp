@@ -1,15 +1,13 @@
 #include <cstdlib>
 #include <vector>
 
-#include "constant.h"
 #include "EncryptedArray.h"
-#include "Ctxt.h"
+#include "FHE.h"
 
+#include "constant.h"
 #include "match.h"
 #include "generalTools.h"
 #include "utilities.h"
-#include "msgEncoding.h"
-
 
 using namespace std;
 using namespace NTL;

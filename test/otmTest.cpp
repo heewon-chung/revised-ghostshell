@@ -2,12 +2,13 @@
 #include <vector>
 
 #include "EncryptedArray.h"
-#include "Ctxt.h"
+#include "FHE.h"
 
-#include "utilities.h"
+#include "constant.h"
 #include "generalTools.h"
 #include "match.h"
 #include "otm.h"
+#include "utilities.h"
 
 using namespace std;
 using namespace NTL;
