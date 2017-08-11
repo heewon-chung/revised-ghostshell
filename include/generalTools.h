@@ -5,15 +5,16 @@
 #include <cassert>
 #include <vector>
 
-#include "NTL/ZZ.h"
-#include "NTL/ZZX.h"
 #include "constant.h"
+#include "EncryptedArray.h"
+#include "NTL/ZZ.h"
 
 using namespace std;
 using namespace NTL;
 
-void ZZtoZZX(ZZX&, const ZZ&);
-void ZZXtoZZ(ZZ&, const ZZX&);
 void generateVectorInstance(vector<ZZX>&);
+void generateVectorInstance(vector<vector<ZZX>>&, const EncryptedArray&);
+void ZZtoZZX(ZZX&, const ZZ&);
+void ZZtoZZX(ZZX&, const int&);
 
 #endif

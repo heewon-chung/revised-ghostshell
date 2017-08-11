@@ -1,20 +1,19 @@
 #include "match.h"
 
-long hammingDistance(const vector<ZZX>& vec1Poly, const vector<ZZX>& vec2Poly){
-    assert(vec1Poly.size() == vec2Poly.size());
-    unsigned long numBits = vec1Poly.size();
-
-    long hammingDistance = 0;
+long hammingDistance(const vector<ZZX>& msg1, const vector<ZZX>& msg2){
+    assert(msg1.size() == msg2.size());
+    
+    unsigned long   numBits = msg1.size(),
+                    hammingDistance = 0;
 
     for(unsigned long i = 0; i < numBits; i++){
-        if(vec1Poly[i] != vec2Poly[i]){
+        if(msg1[i] != msg2[i]){
             hammingDistance++;
         }
     }
 
     return hammingDistance;
 }
-
 
 void hammingDistance(Ctxt& hdCtxt, const vector<Ctxt>& vec1, const vector<Ctxt>& vec2){
     assert(vec1.size() == vec2.size());
@@ -26,9 +25,9 @@ void hammingDistance(Ctxt& hdCtxt, const vector<Ctxt>& vec1, const vector<Ctxt>&
 
     #pragma omp parallel for
     for(unsigned long i = 1; i < numBits; i++){
-        Ctxt tmp = vec1[i];
-        tmp -= vec2[i];
-        tmp.square();
-        hdCtxt += tmp;
+        Ctxt tmpCtxt = vec1[i];
+        tmpCtxt -= vec2[i];
+        tmpCtxt.square();
+        hdCtxt.addCtxt(tmpCtxt);
     }
 }

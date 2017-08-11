@@ -1,5 +1,25 @@
 #include "generalTools.h"
 
+void generateVectorInstance(vector<ZZX>& vecInst){
+    vecInst.clear();
+    
+    for(unsigned long i = 0; i < NUMBITS; i++){
+        vecInst.push_back(conv<ZZX>(rand() % 2));
+    }
+    
+    assert(vecInst.size() == NUMBITS);
+}
+
+void generateVectorInstance(vector<vector<ZZX>>& vecInst, const EncryptedArray& ea){
+    vecInst.clear();
+    vecInst.resize(NUMBITS);
+
+    for(unsigned long i = 0; i < NUMBITS; i++){
+        ZZX msgPoly;
+        ZZtoZZX(msgPoly, rand() % 2);
+        ea.decode(vecInst[i], msgPoly);
+    }
+}
 
 void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
     ZZ      tmpMsg = msg;
@@ -14,27 +34,15 @@ void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
     }
 }
 
-void ZZXtoZZ(ZZ& msg, const ZZX& poly){
-    unsigned long   degree = deg(poly);
-    ZZ              multiplier = PRIMEFIELD;
-    msg = ConstTerm(poly);
+void ZZtoZZX(ZZX& encodedPoly, const int& msg){
+    int     tmpMsg = msg;
+    long    amt = 0;
 
-    for(unsigned long i = 1; i < degree; i++){
-        msg += multiplier * coeff(poly, i);
-        multiplier *= PRIMEFIELD;
-    }
-}
-
-void generateVectorInstance(vector<ZZX>& vecPoly){
-    vecPoly.clear();
-    vecPoly.resize(NUMBITS);
-    
-    for(unsigned long i = 0; i < NUMBITS; i++){
-        if(rand() % 2){
-            ZZtoZZX(vecPoly[i], MSGRND1);
-        }
-        else{
-            ZZtoZZX(vecPoly[i], MSGRND1 + 1);
-        }
+    while(tmpMsg > 0){
+        long rem = tmpMsg % 2;
+        SetCoeff(encodedPoly, amt, rem);
+        amt++;
+        tmpMsg -= rem;
+        tmpMsg /= PRIMEFIELD;
     }
 }
