@@ -14,7 +14,7 @@ const long          C               = 3;
 const unsigned long NUMBITS         = 400;
 const unsigned long THRESHOLD       = 100;
 
-const unsigned long RANDOMBIT       = 40;
+const unsigned long RANDOMBIT       = 80;
 const unsigned long GENERATORBIT    = 30;
 const unsigned long DLGROUPORDER    = 100;
 
