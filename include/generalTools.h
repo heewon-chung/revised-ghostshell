@@ -16,5 +16,6 @@ void generateVectorInstance(vector<ZZX>&);
 void generateVectorInstance(vector<vector<ZZX>>&, const EncryptedArray&);
 void ZZtoZZX(ZZX&, const ZZ&);
 void ZZtoZZX(ZZX&, const int&);
+ZZ ZZXtoZZ(const ZZX&);
 
 #endif
