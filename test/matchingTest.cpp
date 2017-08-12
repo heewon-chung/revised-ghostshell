@@ -17,10 +17,9 @@ int main(void){
     SetSeed(conv<ZZ>(time(NULL)));
 
     cout << "\nMatching Algorithm Test Started...\n";
-    long L = 3;
-    long m = FindM(SECURITY, L, C, MSGSPACE, D, 0, 0);
+    long m = FindM(SECURITY, LEVEL, C, MSGSPACE, D, 0, 0);
     FHEcontext context(m, MSGSPACE, DEGREE);
-    buildModChain(context, L);
+    buildModChain(context, LEVEL);
     ZZX F = context.alMod.getFactorsOverZZ()[0];
 
     cout << "Generating Keys... \n";
@@ -51,7 +50,8 @@ int main(void){
     Ctxt            ctxtHD(secretKey);
     vector<Ctxt>    encMsg1(NUMBITS, secretKey), 
                     encMsg2(NUMBITS, secretKey);
-    ZZX             decHDPoly;
+    ZZX             decHD;
+    // vector<ZZX>     decHDVec;
 
     cout << "Encrypting Messages..." << endl;
     #pragma omp parallel for
@@ -72,11 +72,11 @@ int main(void){
     
     end = TOC;
 
-    secretKey.Decrypt(decHDPoly, ctxtHD);
-    // ea.decrypt(ctxtHD, secretKey, decHDPoly);
+    secretKey.Decrypt(decHD, ctxtHD);
+    // ea.decrypt(ctxtHD, secretKey, decHDVec);
 
     cout << "Hamming Distance (plaintext): " << ptxtHD << endl;
-    cout << "Hamming Distance (ciphertext): " << decHDPoly << endl;
+    cout << "Hamming Distance (ciphertext): " << decHD << endl;
     cout << "Homomorphic Levels Left: " << ctxtHD.findBaseLevel() << endl;
     cout << "Evaluation time for Hamming Distance: " << get_time_us(start, end, 1000000) << " sec" << endl;
 

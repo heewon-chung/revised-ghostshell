@@ -18,10 +18,9 @@ int main(void){
     SetSeed(conv<ZZ>(time(NULL)));
 
     cout << "\nOne-Time MAC Test Started...\n";
-    long L = 4;
-    long m = FindM(SECURITY, L, C, MSGSPACE, D, 0, 0);
+    long m = FindM(SECURITY, LEVEL, C, MSGSPACE, D, 0, 0);
     FHEcontext context(m, MSGSPACE, DEGREE);
-    buildModChain(context, L);
+    buildModChain(context, LEVEL);
     ZZX F = context.alMod.getFactorsOverZZ()[0];
 
     cout << "Generating Keys... \n";

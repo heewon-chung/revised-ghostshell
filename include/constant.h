@@ -5,21 +5,24 @@
 
 using namespace NTL;
 
-const long          PRIMEFIELD      = 401;
-const long          DEGREE          = 1;
-const long          SECURITY        = 80;
-const long          D               = 0;
-const long          C               = 3;
+const long  MSGSPACE        = 401;
+const long  DEGREE          = 1;
+const long  SECURITY        = 80;
+const long  LEVEL           = 4;
+const long  D               = 0;
+const long  C               = 3;
 
-const unsigned long NUMBITS         = 400;
-const unsigned long THRESHOLD       = 100;
+const long  NUMBITS         = 400;
+const long  THRESHOLD       = 100;
+const long  POLYMODLUS      = 2;
 
-const unsigned long RANDOMBIT       = 80;
-const unsigned long GENERATORBIT    = 30;
-const unsigned long DLGROUPORDER    = 100;
+const long  RANDOMBIT       = 40;
+const long  GENERATORBIT    = 30;
+const long  DLGROUPORDER    = 100;
 
-const ZZ            MASKRND         = RandomBits_ZZ(RANDOMBIT);
-const ZZ            MSGRND1         = RandomBits_ZZ(RANDOMBIT);
-const ZZ            MSGRND2         = RandomBits_ZZ(RANDOMBIT);
+// const ZZ    MASKRND         = RandomBits_ZZ(RANDOMBIT);
+const ZZ    MASKRND         = conv<ZZ>(425175407133);
+const ZZ    MSGRND1         = conv<ZZ>(0);
+const ZZ    MSGRND2         = MSGRND1 + 1;
 
 #endif
