@@ -16,6 +16,5 @@
 
 void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
 void recoverMsg(ZZX&, const ZZ&, const ZZ&, const ZZX&);
-void generateAuthGroup(long&, vector<ZZ>&);
 
 #endif
