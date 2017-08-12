@@ -83,7 +83,7 @@ int main(void){
     cout << "Original Message (plaintext): " << ptxtHD << endl;
     cout << "Recover Message (ciphertext): " << recPoly << endl;
     cout << "Homomorphic Levels Left: " << ctxtTag.findBaseLevel() << endl;
-    cout << "Evaluation time for Generating Tag: " << get_time_us(start, end, 1) / 1000000 << " sec\n" << endl;
+    cout << "Evaluation time for Generating Tag: " << get_time_us(start, end, 1000000) << " sec\n" << endl;
 
     return 1;
 }

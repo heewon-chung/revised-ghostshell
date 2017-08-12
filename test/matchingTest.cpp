@@ -78,7 +78,7 @@ int main(void){
     cout << "Hamming Distance (plaintext): " << ptxtHD << endl;
     cout << "Hamming Distance (ciphertext): " << decHDPoly << endl;
     cout << "Homomorphic Levels Left: " << ctxtHD.findBaseLevel() << endl;
-    cout << "Evaluation time for Hamming Distance: " << get_time_us(start, end, 1) / 1000000 << " sec" << endl;
+    cout << "Evaluation time for Hamming Distance: " << get_time_us(start, end, 1000000) << " sec" << endl;
 
     return 0;
 }
