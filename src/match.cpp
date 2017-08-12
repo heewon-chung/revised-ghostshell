@@ -15,18 +15,18 @@ long hammingDistance(const vector<ZZX>& msg1, const vector<ZZX>& msg2){
     return hammingDistance;
 }
 
-void hammingDistance(Ctxt& hdCtxt, const vector<Ctxt>& vec1, const vector<Ctxt>& vec2){
-    assert(vec1.size() == vec2.size());
-    unsigned long numBits = vec1.size();
+void hammingDistance(Ctxt& hdCtxt, const vector<Ctxt>& ct1, const vector<Ctxt>& ct2){
+    assert(ct1.size() == ct2.size());
+    unsigned long numBits = ct1.size();
 
-    hdCtxt = vec1[0];
-    hdCtxt -= vec2[0];
+    hdCtxt = ct1[0];
+    hdCtxt -= ct2[0];
     hdCtxt.square();
 
     #pragma omp parallel for
     for(unsigned long i = 1; i < numBits; i++){
-        Ctxt tmpCtxt = vec1[i];
-        tmpCtxt -= vec2[i];
+        Ctxt tmpCtxt = ct1[i];
+        tmpCtxt -= ct2[i];
         tmpCtxt.square();
         hdCtxt.addCtxt(tmpCtxt);
     }

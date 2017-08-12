@@ -2,6 +2,7 @@
 
 void enrollIrisEncode(vector<ZZX>& encodedIris, const vector<ZZX>& iris){
     assert(iris.size() == NUMBITS);
+
     encodedIris.clear();
     encodedIris.resize(NUMBITS + 1);
     
@@ -14,7 +15,6 @@ void enrollIrisEncode(vector<ZZX>& encodedIris, const vector<ZZX>& iris){
             ZZtoZZX(encodedIris[i], MSGRND2);
         }
     }
-    
     ZZtoZZX(encodedIris[NUMBITS], MASKRND);
 }
 

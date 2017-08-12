@@ -19,8 +19,8 @@ int main(void){
 
     cout << "\nOne-Time MAC Test Started...\n";
     long L = 4;
-    long m = FindM(SECURITY, L, C, PRIMEFIELD, D, 0, 0);
-    FHEcontext context(m, PRIMEFIELD, DEGREE);
+    long m = FindM(SECURITY, L, C, MSGSPACE, D, 0, 0);
+    FHEcontext context(m, MSGSPACE, DEGREE);
     buildModChain(context, L);
     ZZX F = context.alMod.getFactorsOverZZ()[0];
 
@@ -79,11 +79,11 @@ int main(void){
 
     secretKey.Decrypt(decTagPoly, ctxtTag);
     recoverMsg(recPoly, maskAdd, maskMul, decTagPoly);
-
+    
     cout << "Original Message (plaintext): " << ptxtHD << endl;
     cout << "Recover Message (ciphertext): " << recPoly << endl;
-    cout << "Generating Tag Levels Left: " << ctxtTag.findBaseLevel() << endl;
-    cout << "Evaluation time for Generating Tag: " << get_time_us(start, end, 1) / 1000000 << " sec" << endl;
+    cout << "Homomorphic Levels Left: " << ctxtTag.findBaseLevel() << endl;
+    cout << "Evaluation time for Generating Tag: " << get_time_us(start, end, 1) / 1000000 << " sec\n" << endl;
 
     return 1;
 }

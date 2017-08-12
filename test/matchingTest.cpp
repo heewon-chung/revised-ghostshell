@@ -5,8 +5,8 @@
 #include "FHE.h"
 
 #include "constant.h"
-#include "match.h"
 #include "generalTools.h"
+#include "match.h"
 #include "utilities.h"
 
 using namespace std;
@@ -18,8 +18,8 @@ int main(void){
 
     cout << "\nMatching Algorithm Test Started...\n";
     long L = 3;
-    long m = FindM(SECURITY, L, C, PRIMEFIELD, D, 0, 0);
-    FHEcontext context(m, PRIMEFIELD, DEGREE);
+    long m = FindM(SECURITY, L, C, MSGSPACE, D, 0, 0);
+    FHEcontext context(m, MSGSPACE, DEGREE);
     buildModChain(context, L);
     ZZX F = context.alMod.getFactorsOverZZ()[0];
 
@@ -75,10 +75,9 @@ int main(void){
     secretKey.Decrypt(decHDPoly, ctxtHD);
     // ea.decrypt(ctxtHD, secretKey, decHDPoly);
 
-    cout << "\nLength of Two Vector:" << NUMBITS << endl;
     cout << "Hamming Distance (plaintext): " << ptxtHD << endl;
     cout << "Hamming Distance (ciphertext): " << decHDPoly << endl;
-    cout << "Hamming Distance Levels Left: " << ctxtHD.findBaseLevel() << endl;
+    cout << "Homomorphic Levels Left: " << ctxtHD.findBaseLevel() << endl;
     cout << "Evaluation time for Hamming Distance: " << get_time_us(start, end, 1) / 1000000 << " sec" << endl;
 
     return 0;
