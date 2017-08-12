@@ -6,7 +6,6 @@ void generateVectorInstance(vector<ZZX>& vecInst){
     for(unsigned long i = 0; i < NUMBITS; i++){
         vecInst.push_back(conv<ZZX>(rand() % 2));
     }
-    
     assert(vecInst.size() == NUMBITS);
 }
 
@@ -49,11 +48,11 @@ void ZZtoZZX(ZZX& encodedPoly, const int& msg){
 
 ZZ ZZXtoZZ(const ZZX& poly){
     int degree = deg(poly);
-    ZZ  multiplier = conv<ZZ>(1);
+    ZZ  multiplier = conv<ZZ>(POLYMODLUS);
     
     if(degree > 0){
         ZZ eval = poly[0];
-        for(unsigned long i = 1; i < degree - 1; i++){
+        for(unsigned long i = 1; i < degree + 1; i++){
             eval += poly[i] * multiplier;
             multiplier *= POLYMODLUS;
         }
