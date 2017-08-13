@@ -15,6 +15,21 @@ long hammingDistance(const vector<ZZX>& msg1, const vector<ZZX>& msg2){
     return hammingDistance;
 }
 
+long hammingDistance(const vector<vector<ZZX>>& msg1, const vector<vector<ZZX>>& msg2){
+    assert(msg1.size() == msg2.size());
+
+    unsigned long   numBits = msg1.size(),
+                    hammingDistance = 0;
+
+    for(unsigned long i = 0; i < numBits; i++){
+        if(msg1[i] != msg2[i]){
+            hammingDistance++;
+        }
+    }
+
+    return hammingDistance;
+}
+
 void hammingDistance(Ctxt& hdCtxt, const vector<Ctxt>& ct1, const vector<Ctxt>& ct2){
     assert(ct1.size() == ct2.size());
     unsigned long ctxtSize = ct1.size();
