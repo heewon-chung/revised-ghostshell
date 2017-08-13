@@ -25,11 +25,11 @@ void ZZtoZZX(ZZX& encodedPoly, const ZZ& msg){
     long    coeff = 0;
 
     while(tmpMsg > 0){
-        long rem = tmpMsg % POLYMODLUS;
+        long rem = tmpMsg % POLYMODULUS;
         SetCoeff(encodedPoly, coeff, rem);
         coeff++;
         tmpMsg -= rem;
-        tmpMsg /= POLYMODLUS;
+        tmpMsg /= POLYMODULUS;
     }
 }
 
@@ -38,23 +38,23 @@ void ZZtoZZX(ZZX& encodedPoly, const int& msg){
     long    coeff = 0;
 
     while(tmpMsg > 0){
-        long rem = tmpMsg % POLYMODLUS;
+        long rem = tmpMsg % POLYMODULUS;
         SetCoeff(encodedPoly, coeff, rem);
         coeff++;
         tmpMsg -= rem;
-        tmpMsg /= POLYMODLUS;
+        tmpMsg /= POLYMODULUS;
     }
 }
 
 ZZ ZZXtoZZ(const ZZX& poly){
     int degree = deg(poly);
-    ZZ  multiplier = conv<ZZ>(POLYMODLUS);
+    ZZ  multiplier = conv<ZZ>(POLYMODULUS);
     
     if(degree > 0){
         ZZ eval = poly[0];
         for(unsigned long i = 1; i < degree + 1; i++){
             eval += poly[i] * multiplier;
-            multiplier *= POLYMODLUS;
+            multiplier *= POLYMODULUS;
         }
         return eval;
     }

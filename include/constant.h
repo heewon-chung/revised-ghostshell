@@ -14,7 +14,7 @@ const long  C               = 3;
 
 const long  NUMBITS         = 400;
 const long  THRESHOLD       = 100;
-const long  POLYMODLUS      = 2;
+const long  POLYMODULUS     = 2;
 
 const long  RANDOMBIT       = 40;
 const long  GENERATORBIT    = 30;
