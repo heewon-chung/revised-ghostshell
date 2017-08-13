@@ -16,5 +16,6 @@
 
 void generateTag(Ctxt&, ZZ&, ZZ&, const Ctxt&);
 void recoverMsg(ZZX&, const ZZ&, const ZZ&, const ZZX&);
+void recoverMsg(ZZ&, const ZZ&, const ZZ&, const ZZX&);
 
 #endif

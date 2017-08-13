@@ -51,8 +51,8 @@ int main(void){
     Ctxt            ctxtTag(secretKey);
     vector<Ctxt>    encMsg1(NUMBITS, secretKey), 
                     encMsg2(NUMBITS, secretKey);
-    ZZ              maskAdd, maskMul;
-    ZZX             decTagPoly, recPoly;
+    ZZ              maskAdd, maskMul, recHD;
+    ZZX             tagPoly;
 
     cout << "Encrypting Messages..." << endl;
     #pragma omp parallel for
@@ -76,11 +76,13 @@ int main(void){
 
     end = TOC;
 
-    secretKey.Decrypt(decTagPoly, ctxtTag);
-    recoverMsg(recPoly, maskAdd, maskMul, decTagPoly);
+    secretKey.Decrypt(tagPoly, ctxtTag);
+    recoverMsg(recHD, maskAdd, maskMul, tagPoly);
+    // recoverMsg(recPoly, maskAdd, maskMul, tagPoly);
+
     
     cout << "Original Message (plaintext): " << ptxtHD << endl;
-    cout << "Recover Message (ciphertext): " << recPoly << endl;
+    cout << "Recover Message (ciphertext): " << recHD << endl;
     cout << "Homomorphic Levels Left: " << ctxtTag.findBaseLevel() << endl;
     cout << "Evaluation time for Generating Tag: " << get_time_us(start, end, 1000000) << " sec\n" << endl;
 

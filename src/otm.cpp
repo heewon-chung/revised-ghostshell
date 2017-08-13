@@ -24,3 +24,9 @@ void recoverMsg(ZZX& recPoly, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& t
     recPoly -= maskAddPoly;
     div(recPoly, recPoly, maskMulPoly);
 }
+
+void recoverMsg(ZZ& recMsg, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& tagPoly){
+    recMsg = ZZXtoZZ(tagPoly);
+    recMsg -= maskAdd;
+    recMsg /= maskMul;
+}
