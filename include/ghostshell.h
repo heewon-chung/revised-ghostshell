@@ -8,15 +8,16 @@
 #include "FHE.h"
 
 #include "constant.h"
+#include "generalTools.h"
 #include "irisEncoding.h"
 #include "match.h"
 #include "otm.h"
-#include "hashing.h"
+#include "authGroup.h"
 
 void enrollment(vector<Ctxt>&, const vector<ZZX>&, const FHESecKey&);
-void authentication(vector<Ctxt>&, const vector<ZZX>&, const FHESecKey&);
-void computeHDandOTM(Ctxt& tagCtxt, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
-// void decryptAndGenerateAuthGroup(ZZ&, long&, vector<ZZ>&, const Ctxt&, const EncryptedArray&, const FHESecKey&);
-// bool verification(const long&, const vector<ZZ>&, const ZZ&);
+void requestAuthenticate(vector<Ctxt>&, const vector<ZZX>&, const FHESecKey&);
+void computeHDandOTM(Ctxt&, ZZ&, ZZ&, const vector<Ctxt>&, const vector<Ctxt>&);
+void decryptAndGenerateAuthGroup(long&, vector<ZZ>&, ZZ&, const Ctxt&, const FHESecKey&);
+bool isValidity(const ZZ&, const long&, const vector<ZZ>&, const ZZ&, const ZZ&);
 
 #endif

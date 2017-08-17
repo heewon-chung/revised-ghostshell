@@ -65,3 +65,22 @@ ZZ ZZXtoZZ(const ZZX& poly){
         return conv<ZZ>(0);
     }   
 }
+
+void ZZXtoZZ(ZZ& eval, const ZZX& poly){
+    int degree = deg(poly);
+    ZZ  multiplier = conv<ZZ>(POLYMODULUS);
+    
+    if(degree > 0){
+        eval = poly[0];
+        for(unsigned long i = 1; i < degree + 1; i++){
+            eval += poly[i] * multiplier;
+            multiplier *= POLYMODULUS;
+        }
+    }
+    else if(degree == 0){
+        eval = poly[0];
+    }
+    else{
+        eval = conv<ZZ>(0);
+    }   
+}

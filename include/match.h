@@ -5,8 +5,9 @@
 #include <cassert>
 #include <vector>
 
-#include "constant.h"
 #include "FHE.h"
+
+#include "constant.h"
 #include "generalTools.h"
 
 long hammingDistance(const vector<ZZX>&, const vector<ZZX>&);

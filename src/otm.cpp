@@ -25,8 +25,12 @@ void recoverMsg(ZZX& recPoly, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& t
     div(recPoly, recPoly, maskMulPoly);
 }
 
-void recoverMsg(ZZ& recMsg, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& tagPoly){
-    recMsg = ZZXtoZZ(tagPoly);
-    recMsg -= maskAdd;
-    recMsg /= maskMul;
+void recoverMsg(ZZ& recoverMsg, const ZZ& maskAdd, const ZZ& maskMul, const ZZX& tagPoly){
+    ZZXtoZZ(recoverMsg, tagPoly);
+    recoverMsg -= maskAdd;
+    recoverMsg /= maskMul;
+}
+
+void recoverMsg(ZZ& recoverMsg, const ZZ& tagDL, const long& generator, const ZZ& maskAdd, const ZZ& maskMul){
+    
 }

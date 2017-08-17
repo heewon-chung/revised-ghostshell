@@ -20,8 +20,7 @@ const long  RANDOMBIT       = 40;
 const long  GENERATORBIT    = 30;
 const long  DLGROUPORDER    = 100;
 
-// const ZZ    MASKRND         = RandomBits_ZZ(RANDOMBIT);
-const ZZ    MASKRND         = conv<ZZ>(425175407133);
+const ZZ    MASKRND         = conv<ZZ>(425175407133);   // random 40 bit integer
 const ZZ    MSGRND1         = conv<ZZ>(0);
 const ZZ    MSGRND2         = MSGRND1 + 1;
 
